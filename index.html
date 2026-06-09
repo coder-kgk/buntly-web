@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Buntly is coming soon — AI-powered dog health companion for anxious dog parents in India and the USA.">
+  <meta name="robots" content="index, follow">
+  <title>Buntly — Coming Soon</title>
+  <style>
+    :root {
+      --primary: #6B9B37;
+      --primary-dark: #567a2c;
+      --text: #2C1810;
+      --muted: #5c4a3a;
+      --bg: #ffffff;
+      --surface: #f8faf5;
+      --border: rgba(44, 24, 16, 0.12);
+      --radius: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .paw { font-size: 2rem; margin-bottom: 1.5rem; }
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 2.25rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      max-width: 28rem;
+    }
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 26rem;
+      margin-bottom: 2.5rem;
+    }
+    .signup {
+      width: 100%;
+      max-width: 22rem;
+      margin-bottom: 2rem;
+    }
+    .signup label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    .signup-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .signup input {
+      flex: 1;
+      min-width: 12rem;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      outline: none;
+    }
+    .signup input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(107, 155, 55, 0.2);
+    }
+    .signup button {
+      padding: 0.875rem 1.25rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .signup button:hover { background: var(--primary-dark); }
+    .signup-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .links a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .links a:hover { text-decoration: underline; }
+    footer {
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="logo">Buntly</div>
+    <div class="paw" aria-hidden="true">🐾</div>
+    <h1>Buntly is coming soon</h1>
+    <p class="subtitle">AI-powered dog health companion — so you never face a scary dog moment alone again.</p>
+
+    <form class="signup" onsubmit="event.preventDefault(); alert('Thanks! We\\'ll notify you when Buntly launches.');">
+      <label for="email">Get notified at launch</label>
+      <div class="signup-row">
+        <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+        <button type="submit">Notify me</button>
+      </div>
+      <p class="signup-hint">UI only — no backend connected yet.</p>
+    </form>
+
+    <nav class="links" aria-label="Legal">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="mailto:geethk.kt@gmail.com">Contact</a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Buntly · <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a></p>
+  </footer>
+</body>
+</html>
