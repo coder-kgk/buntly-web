@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Buntly Terms of Service — rules for using our AI dog health companion app.">
+  <meta name="description" content="Buntly Terms of Service — AI disclaimers, subscriptions, liability. Draft for lawyer review.">
   <meta name="robots" content="index, follow">
   <title>Terms of Service — Buntly</title>
   <style>
@@ -16,6 +16,7 @@
       --surface: #f8faf5;
       --border: rgba(44, 24, 16, 0.1);
       --radius: 12px;
+      --red: #c0392b;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -35,38 +36,57 @@
     }
     header .logo { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
     header .tagline { font-size: 0.875rem; opacity: 0.9; margin-top: 0.25rem; }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
     .draft-banner {
       background: #fef9e7;
-      border: 1px solid #f0d060;
+      border: 2px solid #f0d060;
       border-radius: var(--radius);
-      padding: 1rem 1.25rem;
+      padding: 1.25rem 1.5rem;
       margin-bottom: 2rem;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #6b5700;
     }
+    .draft-banner strong { display: block; font-size: 1.05rem; margin-bottom: 0.35rem; }
     .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
     h1 { font-size: 1.75rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; }
     h2 {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--primary-dark);
-      margin: 2rem 0 0.75rem;
+      margin: 2.25rem 0 0.75rem;
       padding-bottom: 0.35rem;
       border-bottom: 2px solid var(--surface);
     }
+    h3 { font-size: 1.05rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
     p { margin-bottom: 0.875rem; }
     ul, ol { padding-left: 1.5rem; margin-bottom: 0.875rem; }
     li { margin-bottom: 0.35rem; }
     a { color: var(--primary); }
-    .disclaimer-box {
+    .box-red {
       background: #fef0ef;
-      border-left: 4px solid #c0392b;
-      padding: 1rem 1.25rem;
-      margin: 1rem 0;
+      border: 2px solid #e8b4b0;
+      border-left: 6px solid var(--red);
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
       border-radius: 0 var(--radius) var(--radius) 0;
     }
-    .disclaimer-box strong { color: #922b21; }
+    .not-vet {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1.55;
+      margin: 0.5rem 0 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .emergency {
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1rem;
+      margin: 1rem 0 0.5rem;
+    }
+    .emergency ol { margin-top: 0.5rem; }
+    .emergency li { font-weight: 700; }
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -80,6 +100,7 @@
     @media (max-width: 480px) {
       .wrap { padding: 1.5rem 1rem 3rem; }
       h1 { font-size: 1.5rem; }
+      .not-vet { font-size: 1rem; }
     }
   </style>
 </head>
@@ -91,77 +112,197 @@
 
   <main class="wrap">
     <div class="draft-banner">
-      <strong>Draft for lawyer review.</strong> These Terms are an AI-assisted draft for Buntly (India LLP, registration pending). Not final legal advice.
+      <strong>⚠️ DRAFT — FOR LAWYER REVIEW ONLY</strong>
+      These Terms of Service are an AI-assisted draft prepared for Buntly (India LLP, registration pending). They are <strong>not</strong> final legal advice. Do not rely on this document until reviewed and approved by qualified legal counsel.
     </div>
 
     <h1>Terms of Service</h1>
-    <p class="meta"><strong>Last updated:</strong> June 2026 &nbsp;·&nbsp; <strong>Effective:</strong> June 2026</p>
+    <p class="meta"><strong>Last updated:</strong> June 2026</p>
 
-    <h2>1. Acceptance</h2>
-    <p>By using Buntly, you agree to these Terms. If you do not agree, do not use the Service. You must be at least 13 years old (or the minimum age in your jurisdiction).</p>
+    <h2>Section 1 — Acceptance</h2>
+    <p>By downloading, installing, or using Buntly, you agree to these Terms of Service (“Terms”). If you do not agree, do not use the app. These Terms constitute a legally binding agreement between you and Buntly.</p>
 
-    <h2>2. Description of service</h2>
-    <p>Buntly is an AI-powered dog health companion for organizing profiles, health logs, AI guidance (including Crisis Companion), vet finder tools, household sharing, and optional premium subscriptions. Buntly is <strong>not</strong> a veterinary clinic or emergency dispatch service.</p>
+    <h2>Section 2 — Eligibility</h2>
+    <p>You must be at least <strong>18 years old</strong> to use Buntly. By using Buntly, you represent that you are 18 or older. If you use Buntly on behalf of an organization, you represent that you have authority to bind that organization to these Terms.</p>
 
-    <h2>3. AI &amp; medical disclaimer</h2>
-    <div class="disclaimer-box">
-      <p><strong>BUNTLY IS NOT A SUBSTITUTE FOR VETERINARY CARE.</strong></p>
-      <ul style="margin-top:0.5rem;">
-        <li>Content is for <strong>informational purposes only</strong> — not medical advice or diagnosis.</li>
-        <li>Claude AI is <strong>not a veterinarian</strong> and may <strong>make errors</strong>.</li>
-        <li><strong>In an emergency, call a vet or emergency clinic immediately.</strong></li>
-        <li>Always consult a licensed veterinarian for health decisions.</li>
+    <h2>Section 3 — Description of Service</h2>
+    <p>Buntly provides:</p>
+    <ul>
+      <li>AI-powered dog health information and guidance</li>
+      <li>Emergency crisis support tools</li>
+      <li>Health record management</li>
+      <li>Medication and appointment reminders</li>
+      <li>Community and caregiver sharing features</li>
+    </ul>
+
+    <h2>Section 4 — AI Services — Critical Disclaimers</h2>
+    <div class="box-red">
+      <h3>4.1 Not Veterinary Advice</h3>
+      <p class="not-vet">Buntly’s AI features do NOT constitute veterinary advice, medical advice, or professional advice of any kind.</p>
+      <p>No veterinarian-client-patient relationship is created by using Buntly. No licensed veterinarian-client relationship is established through the app.</p>
+
+      <h3>4.2 Not a Substitute for Professional Care</h3>
+      <ul>
+        <li>Always consult a licensed, qualified veterinarian for your dog’s health</li>
+        <li>AI guidance is for informational and emotional support only</li>
+        <li>Never disregard professional veterinary advice because of something Buntly’s AI said</li>
+        <li>Never delay seeking veterinary care because of app guidance</li>
       </ul>
+
+      <h3>4.3 Emergency Situations</h3>
+      <p class="emergency">IN A LIFE-THREATENING EMERGENCY:</p>
+      <ol class="emergency">
+        <li>CALL YOUR VETERINARIAN IMMEDIATELY</li>
+        <li>GO TO THE NEAREST EMERGENCY ANIMAL HOSPITAL</li>
+        <li>CALL ASPCA POISON CONTROL: (888) 426-4435 (if poisoning suspected)</li>
+        <li>DO NOT WAIT FOR AI RESPONSES</li>
+      </ol>
+
+      <h3>4.4 AI Limitations</h3>
+      <p>The AI:</p>
+      <ul>
+        <li>May produce inaccurate, incomplete, or outdated information</li>
+        <li>Cannot physically examine your dog</li>
+        <li>Cannot order or interpret diagnostic tests</li>
+        <li>Cannot prescribe medications or treatments</li>
+        <li>Does not have access to your dog’s complete medical history unless you provide it</li>
+        <li>May respond differently to similar questions at different times</li>
+        <li>Is not a replacement for years of veterinary training and experience</li>
+      </ul>
+
+      <h3>4.5 Powered by Claude (Anthropic)</h3>
+      <p>Buntly’s AI features are powered by Claude, developed by Anthropic PBC. Your conversations are processed by Anthropic per their Terms of Use and Privacy Policy. By using AI features, you consent to your conversation data being transmitted to Anthropic’s servers in the USA.</p>
+      <p>Anthropic Privacy Policy: <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">anthropic.com/privacy</a></p>
+
+      <h3>4.6 Veterinary Review</h3>
+      <p>Buntly’s emergency guidance content has been reviewed by licensed veterinarians. However, this review does <strong>not</strong> make the content veterinary advice specific to your dog’s situation.</p>
     </div>
 
-    <h2>4. User responsibilities</h2>
+    <h2>Section 5 — User Accounts</h2>
     <ul>
-      <li>Provide accurate information and keep credentials secure</li>
-      <li>Do not use Buntly as your sole emergency resource</li>
-      <li>Use the Service lawfully and respect household privacy</li>
-      <li>Comply with applicable laws in India, the USA, and your locality</li>
+      <li>You are responsible for maintaining account security</li>
+      <li>You must not share your account credentials</li>
+      <li>You must notify us immediately of unauthorized access at <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a></li>
+      <li>You are responsible for all activity under your account</li>
+      <li>One account per person</li>
     </ul>
 
-    <h2>5. Accounts &amp; security</h2>
-    <p>Accounts are created via supported authentication (e.g., email/password). You may delete your account in Settings. We may suspend accounts that violate these Terms.</p>
-
-    <h2>6. Subscriptions &amp; payments</h2>
-    <p>Paid features are billed through Apple App Store, Google Play, and managed via RevenueCat. Subscriptions auto-renew unless canceled in your store settings. Refunds follow store policies.</p>
-
-    <h2>7. Prohibited uses</h2>
+    <h2>Section 6 — Acceptable Use</h2>
+    <p>You must NOT:</p>
     <ul>
-      <li>Unlawful, harmful, or abusive activity</li>
-      <li>Reverse engineering, scraping, or circumventing security</li>
-      <li>Impersonation or unauthorized veterinary services</li>
-      <li>Malware, spam, or interference with other users</li>
+      <li>Use Buntly for human medical advice</li>
+      <li>Attempt to manipulate the AI to provide harmful content</li>
+      <li>Share another person’s dog’s data without authorization</li>
+      <li>Use the app for commercial purposes without written permission</li>
+      <li>Attempt to reverse engineer, hack, or circumvent security measures</li>
+      <li>Use the app in violation of any applicable law</li>
+      <li>Impersonate any person or entity</li>
     </ul>
 
-    <h2>8. Intellectual property</h2>
-    <p>Buntly owns the Service and grants you a limited personal, non-commercial license. You retain ownership of content you submit and grant us a license to operate the Service and provide AI features you request.</p>
+    <h2>Section 7 — Subscriptions and Payments</h2>
+    <p><strong>7.1</strong> Free tier features are available without payment.</p>
+    <p><strong>7.2</strong> Premium features require a paid subscription.</p>
+    <p><strong>7.3</strong> Payments are processed by RevenueCat via Apple App Store or Google Play.</p>
+    <p><strong>7.4</strong> Subscription automatically renews unless cancelled at least 24 hours before renewal.</p>
+    <p><strong>7.5</strong> Refunds are governed by Apple App Store / Google Play refund policies.</p>
+    <p><strong>7.6</strong> Prices may change with 30 days notice.</p>
+    <p><strong>7.7</strong> No refunds for partial subscription periods except where required by law.</p>
 
-    <h2>9. Limitation of liability</h2>
-    <p>THE SERVICE IS PROVIDED “AS IS.” TO THE MAXIMUM EXTENT PERMITTED BY LAW, BUNTLY DISCLAIMS WARRANTIES AND IS NOT LIABLE FOR INDIRECT OR CONSEQUENTIAL DAMAGES. TOTAL LIABILITY IS LIMITED TO THE GREATER OF USD $100 / INR ₹8,000 OR AMOUNTS PAID IN THE PRIOR 12 MONTHS. Some jurisdictions limit these exclusions.</p>
+    <h2>Section 8 — Intellectual Property</h2>
+    <ul>
+      <li>Buntly and all content, features, and functionality are owned by Buntly</li>
+      <li>You retain ownership of content you create (health logs, notes)</li>
+      <li>You grant Buntly a limited license to process your content to provide the service</li>
+      <li>You may not copy, modify, or distribute Buntly’s content without permission</li>
+    </ul>
 
-    <h2>10. Indemnification</h2>
-    <p>You agree to indemnify Buntly against claims arising from your use of the Service, your content, violations of these Terms, or health decisions you make.</p>
+    <h2>Section 9 — User Content</h2>
+    <ul>
+      <li>You are responsible for the accuracy of information you enter</li>
+      <li>Do not enter false health information — it could result in dangerous AI guidance</li>
+      <li>Buntly is not responsible for errors in AI responses caused by inaccurate information you provided</li>
+    </ul>
 
-    <h2>11. Governing law</h2>
-    <p>These Terms are governed by the laws of <strong>India (Karnataka)</strong>. For <strong>California, USA</strong> residents, certain consumer and privacy claims may also be governed by California law where required and not preempted.</p>
+    <h2>Section 10 — Disclaimers of Warranties</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+    <ul>
+      <li>BUNTLY IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND</li>
+      <li>WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE</li>
+      <li>WE DO NOT WARRANT THE ACCURACY OF AI RESPONSES</li>
+      <li>WE DO NOT WARRANT THAT THE SERVICE WILL MEET YOUR REQUIREMENTS</li>
+      <li>YOUR USE OF THE SERVICE IS AT YOUR OWN RISK</li>
+    </ul>
 
-    <h2>12. Dispute resolution</h2>
-    <p>Contact <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a> first for informal resolution (30 days). Where enforceable, disputes may be resolved by binding individual arbitration with a class action waiver. Otherwise, courts in Bengaluru, Karnataka, India have jurisdiction unless mandatory consumer law requires otherwise.</p>
+    <h2>Section 11 — Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:</p>
+    <p><strong>BUNTLY SHALL NOT BE LIABLE FOR:</strong></p>
+    <ul>
+      <li>Any indirect, incidental, special, consequential, or punitive damages</li>
+      <li>Loss of profits, data, goodwill, or other intangible losses</li>
+      <li>Damages resulting from reliance on AI responses</li>
+      <li>Damages resulting from delay in seeking veterinary care</li>
+      <li>Damages exceeding the amount you paid us in the 12 months preceding the claim</li>
+    </ul>
+    <p><strong>NOTHING IN THESE TERMS LIMITS LIABILITY FOR:</strong></p>
+    <ul>
+      <li>Death or personal injury caused by our negligence</li>
+      <li>Fraud or fraudulent misrepresentation</li>
+      <li>Any liability that cannot be excluded by law</li>
+    </ul>
 
-    <h2>13. Changes</h2>
-    <p>We may update these Terms at <a href="/terms.html">buntly.app/terms</a>. Continued use after changes constitutes acceptance where permitted by law.</p>
+    <h2>Section 12 — Indemnification</h2>
+    <p>You agree to indemnify and hold harmless Buntly, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including legal fees) arising from:</p>
+    <ul>
+      <li>Your use of the service</li>
+      <li>Your violation of these Terms</li>
+      <li>Your violation of any third party’s rights</li>
+      <li>Inaccurate information you provided that led to AI guidance errors</li>
+    </ul>
 
-    <h2>14. Contact</h2>
-    <p><strong>Email:</strong> <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a><br>
-    <strong>Privacy Policy:</strong> <a href="/privacy.html">buntly.app/privacy</a> · <a href="/">Home</a></p>
+    <h2>Section 13 — Governing Law and Dispute Resolution</h2>
+    <h3>13.1 Governing Law</h3>
+    <ul>
+      <li><strong>India users:</strong> Laws of India, jurisdiction of Karnataka courts</li>
+      <li><strong>USA users:</strong> Laws of California, jurisdiction of San Francisco courts</li>
+      <li><strong>Other users:</strong> Laws of India apply</li>
+    </ul>
+    <h3>13.2 Dispute Resolution</h3>
+    <ol>
+      <li>Contact us at <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a> — 30 days to resolve informally</li>
+      <li>If unresolved, mediation in Bangalore, India (India users) or San Francisco, USA (US users)</li>
+      <li>Binding arbitration if mediation fails</li>
+      <li>Court proceedings as last resort</li>
+    </ol>
+    <h3>13.3 Class Action Waiver</h3>
+    <p>To the extent permitted by applicable law, you waive the right to participate in class action lawsuits against Buntly. Note: This waiver may not apply to California consumers under CPRA.</p>
+
+    <h2>Section 14 — Termination</h2>
+    <ul>
+      <li>You may delete your account at any time via Settings → Delete Account</li>
+      <li>We may terminate accounts that violate these Terms</li>
+      <li>Upon termination, your right to use the service ends immediately</li>
+      <li>Data deletion follows our Privacy Policy retention schedule</li>
+    </ul>
+
+    <h2>Section 15 — Changes to Terms</h2>
+    <p>We will notify you of material changes via email and in-app notification at least <strong>30 days</strong> before they take effect. Continued use after the effective date constitutes acceptance. If you disagree with changes, delete your account before the effective date.</p>
+
+    <h2>Section 16 — Severability</h2>
+    <p>If any provision is found unenforceable, the remaining provisions continue in full force.</p>
+
+    <h2>Section 17 — Entire Agreement</h2>
+    <p>These Terms, together with our <a href="privacy.html">Privacy Policy</a>, constitute the entire agreement between you and Buntly regarding the service.</p>
+
+    <h2>Section 18 — Contact</h2>
+    <p><strong>Legal notices:</strong> <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a><br>
+    <strong>Subject:</strong> “Legal Notice — Buntly”<br>
+    <strong>Buntly,</strong> India (registration pending)</p>
+    <p style="margin-top:1.5rem;"><a href="privacy.html">Privacy Policy</a> · <a href="index.html">Home</a></p>
   </main>
 
   <footer>
     <p>&copy; 2026 Buntly · <a href="mailto:geethk.kt@gmail.com">geethk.kt@gmail.com</a></p>
-    <p style="margin-top:0.5rem;"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    <p style="margin-top:0.5rem;"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
   </footer>
 </body>
 </html>
