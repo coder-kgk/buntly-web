@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancel Account Deletion — Buntly</title>
+  <!--
+    Hosting / APP_URL note (ops):
+    Edge functions build cancel links as:
+      ${APP_URL}/cancel-deletion.html?token=...
+    Interim APP_URL default: https://coder-kgk.github.io/buntly-web (no trailing slash).
+    Prefer the .html path on GitHub Pages project sites; extensionless /cancel-deletion
+    may 404 until a redirect or cancel-deletion/index.html is added.
+    When buntly.app DNS is live, update the APP_URL Edge secret + this comment together.
+  -->
+  <!-- Supabase URL config (no secrets) -->
+  <meta name="supabase-url" content="https://tgnsomgwgwsjtnozyfxa.supabase.co">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #FAF7F2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .icon { font-size: 64px; margin-bottom: 24px; }
+
+    h1 {
+      font-size: 24px;
+      color: #3D2B1F;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    p {
+      color: #5A4534;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #8B6F47;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover { background: #7A6040; }
+
+    .btn-secondary {
+      background: transparent;
+      color: #8B6F47;
+      border: 2px solid #8B6F47;
+      margin-top: 12px;
+    }
+
+    .btn-secondary:hover { background: #FAF7F2; }
+
+    .loading { color: #8B6F47; font-size: 16px; }
+
+    .error-box {
+      background: #FEF2F2;
+      border-left: 4px solid #EF4444;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: left;
+    }
+
+    .error-box p { color: #991B1B; margin: 0; }
+
+    .success-box {
+      background: #F0FDF4;
+      border-left: 4px solid #22C55E;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: left;
+    }
+
+    .success-box p { color: #15803D; margin: 0; }
+
+    .footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #A89880;
+    }
+
+    .footer a { color: #A89880; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Loading state -->
+    <div id="loading">
+      <div class="icon">🐾</div>
+      <h1>Cancelling deletion...</h1>
+      <p class="loading">Please wait while we cancel your deletion request.</p>
+    </div>
+
+    <!-- Success state (hidden initially) -->
+    <div id="success" style="display:none">
+      <div class="icon">✅</div>
+      <h1>Deletion cancelled</h1>
+      <div class="success-box">
+        <p>
+          Your account deletion request has been cancelled.
+          You can sign back in to Buntly. Your data should still be available
+          as it was before you requested deletion (within the 30-day window).
+        </p>
+      </div>
+      <p>
+        Open Buntly to continue caring for your dog.
+      </p>
+      <a href="buntly://home" class="btn" id="openApp">Open Buntly</a>
+      <p style="margin-top: 16px; font-size: 14px; color: #8B6F47;">
+        If the app doesn't open, install or open Buntly from the App Store /
+        Google Play, then sign in with the same account.
+      </p>
+    </div>
+
+    <!-- Error state (hidden initially) -->
+    <div id="error" style="display:none">
+      <div class="icon">❌</div>
+      <h1>Could not cancel deletion</h1>
+      <div class="error-box">
+        <p id="errorMessage">
+          This link may have expired or already been used.
+        </p>
+      </div>
+      <p>
+        To try again: open Buntly, go to the sign-in screen when your account
+        shows deletion in progress, and tap <strong>Cancel my deletion</strong>
+        to receive a new cancellation email. Or contact us:
+      </p>
+      <a href="mailto:privacy@buntly.app?subject=Cancel%20Account%20Deletion" class="btn">
+        Contact privacy@buntly.app
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>
+        Buntly ·
+        <a href="mailto:privacy@buntly.app">privacy@buntly.app</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Get token from URL
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    function show(id) {
+      ['loading', 'success', 'error'].forEach((s) => {
+        document.getElementById(s).style.display = s === id ? 'block' : 'none';
+      });
+    }
+
+    async function cancelDeletion() {
+      if (!token) {
+        document.getElementById('errorMessage').textContent =
+          'No cancellation token found in this link. ' +
+          'Please use the link from your email.';
+        show('error');
+        return;
+      }
+
+      try {
+        // Supabase URL from meta tag (with safe fallback).
+        const supabaseUrl =
+          document.querySelector('meta[name="supabase-url"]')?.content ||
+          'https://tgnsomgwgwsjtnozyfxa.supabase.co';
+
+        const response = await fetch(
+          `${supabaseUrl}/functions/v1/cancel-account-deletion`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          show('success');
+        } else {
+          document.getElementById('errorMessage').textContent =
+            data.error || 'Could not cancel deletion. Please try again.';
+          show('error');
+        }
+      } catch (e) {
+        document.getElementById('errorMessage').textContent =
+          'Network error. Please check your connection and try again.';
+        show('error');
+      }
+    }
+
+    // Run immediately on page load
+    cancelDeletion();
+  </script>
+</body>
+</html>
