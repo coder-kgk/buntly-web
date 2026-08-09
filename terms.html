@@ -112,7 +112,12 @@
 
   <main class="wrap">
     <h1>Terms of Service</h1>
-    <p class="meta"><strong>Last updated:</strong> June 2026</p>
+    <p class="meta"><strong>Last updated:</strong> August 9, 2026 &nbsp;·&nbsp; <strong>Effective date:</strong> August 5, 2026 &nbsp;·&nbsp; <strong>Version:</strong> 2026-08-09</p>
+
+    <div class="draft-banner">
+      <strong>Draft for lawyer review.</strong>
+      This document is an AI-assisted draft prepared for Buntly (India LLP, registration pending). It is not final legal advice. Have qualified counsel review before publication.
+    </div>
 
     <h2>Section 1 — Acceptance</h2>
     <p>By downloading, installing, or using Buntly, you agree to these Terms of Service (“Terms”). If you do not agree, do not use the app. These Terms constitute a legally binding agreement between you and Buntly.</p>
@@ -123,11 +128,11 @@
     <h2>Section 3 — Description of Service</h2>
     <p>Buntly provides:</p>
     <ul>
-      <li>AI-powered dog health information and guidance</li>
+      <li>AI-powered dog health information and guidance (Anthropic Claude via our ai-gateway), including Crisis Companion, Breed Ask, and Training Coach</li>
       <li>Emergency crisis support tools</li>
       <li>Health record management</li>
       <li>Medication and appointment reminders</li>
-      <li>Community and caregiver sharing features</li>
+      <li>Household / caregiver sharing features (not a public social community feed)</li>
     </ul>
 
     <h2>Section 4 — AI Services — Critical Disclaimers</h2>
@@ -166,7 +171,7 @@
       </ul>
 
       <h3>4.5 Powered by Claude (Anthropic)</h3>
-      <p>Buntly’s AI features are powered by Claude, developed by Anthropic PBC. Your conversations are processed by Anthropic per their Terms of Use and Privacy Policy. By using AI features, you consent to your conversation data being transmitted to Anthropic’s servers in the USA.</p>
+      <p>Buntly’s AI features are powered by Claude, developed by Anthropic PBC, accessed through our Supabase <strong>ai-gateway</strong>. Your questions and relevant dog/health context are processed by Anthropic per their Terms of Use and Privacy Policy. Account email and payment details are not sent to Anthropic for inference. By using AI features, you consent to this transmission to Anthropic’s servers in the USA.</p>
       <p>Anthropic Privacy Policy: <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">anthropic.com/privacy</a></p>
 
       <h3>4.6 Veterinary Review</h3>
@@ -196,11 +201,11 @@
 
     <h2>Section 7 — Subscriptions and Payments</h2>
     <p><strong>7.1</strong> Free tier features are available without payment.</p>
-    <p><strong>7.2</strong> Premium features require a paid subscription.</p>
-    <p><strong>7.3</strong> Payments are processed by RevenueCat via Apple App Store or Google Play.</p>
+    <p><strong>7.2</strong> Premium / Family features require a paid subscription managed by <strong>RevenueCat</strong> via Apple App Store or Google Play.</p>
+    <p><strong>7.3</strong> Product identifiers currently configured in the app: <code>buntly_premium_monthly</code>, <code>buntly_premium_yearly</code>, <code>buntly_family_monthly</code>. Configured display fallbacks are $8.99/month, $69.99/year, and $13.99/month Family — <strong>[VERIFY]</strong> live store / RevenueCat dashboard prices; the price shown at purchase controls billing.</p>
     <p><strong>7.4</strong> Subscription automatically renews unless cancelled at least 24 hours before renewal.</p>
     <p><strong>7.5</strong> Refunds are governed by Apple App Store / Google Play refund policies.</p>
-    <p><strong>7.6</strong> Prices may change with 30 days notice.</p>
+    <p><strong>7.6</strong> Prices may change with 30 days notice where required.</p>
     <p><strong>7.7</strong> No refunds for partial subscription periods except where required by law.</p>
 
     <h2>Section 8 — Intellectual Property</h2>
@@ -217,6 +222,14 @@
       <li>Do not enter false health information — it could result in dangerous AI guidance</li>
       <li>Buntly is not responsible for errors in AI responses caused by inaccurate information you provided</li>
     </ul>
+
+    <h2>Section 9A — Third-Party Services</h2>
+    <p>The Service integrates third-party services including Anthropic (via ai-gateway), Supabase, RevenueCat, PostHog, Sentry, Datadog (LLM Observability, when configured), Resend, Expo Push, Foursquare Places (default Emergency Vet Finder / places search), Google Maps/Places (geocoding, maps, and fallback/alternate places search), Apple Sign-In, Google Sign-In, Open Pet Food Facts, OpenWeatherMap, Amazon (affiliate-tagged outbound shopping links), Apple, and Google. Your use of those services may be subject to their separate terms and policies.</p>
+    <p>We are not responsible for third-party services outside our reasonable control.</p>
+
+    <h2>Section 9B — Referrals, Promotions, and Affiliate Links</h2>
+    <p>Referral and promotional codes may grant time-limited access to premium features or other benefits. Codes, redemptions, and resulting entitlements are recorded to operate the program and prevent abuse. We may modify or end referral or promo programs at any time.</p>
+    <p>Some product or shopping suggestions may include <strong>Amazon affiliate links</strong> (tagged outbound URLs). If you purchase on Amazon, Amazon’s terms apply to that transaction. Affiliate relationships do not make Buntly a marketplace of record for those goods.</p>
 
     <h2>Section 10 — Disclaimers of Warranties</h2>
     <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
@@ -257,23 +270,25 @@
     <h2>Section 13 — Governing Law and Dispute Resolution</h2>
     <h3>13.1 Governing Law</h3>
     <ul>
-      <li><strong>India users:</strong> Laws of India, jurisdiction of Karnataka courts</li>
-      <li><strong>USA users:</strong> Laws of California, jurisdiction of San Francisco courts</li>
-      <li><strong>Other users:</strong> Laws of India apply</li>
+      <li><strong>Primary:</strong> Laws of India; courts in Karnataka, India for disputes not subject to arbitration</li>
+      <li><strong>California residents:</strong> certain consumer/privacy claims may also be governed by California law to the extent required and not preempted</li>
+      <li><strong>EU / UK / Canada residents:</strong> mandatory local consumer and data-protection rights that cannot be waived by contract still apply</li>
     </ul>
+    <p>LAWYER REVIEW REQUIRED: confirm this carve-out is sufficient, or whether EU/UK/Canadian consumers require a more specific governing-law exception.</p>
     <h3>13.2 Dispute Resolution</h3>
     <ol>
       <li>Contact us at <a href="mailto:privacy@buntly.app">privacy@buntly.app</a> — 30 days to resolve informally</li>
-      <li>If unresolved, mediation in Bangalore, India (India users) or San Francisco, USA (US users)</li>
-      <li>Binding arbitration if mediation fails</li>
-      <li>Court proceedings as last resort</li>
+      <li>Binding individual arbitration where enforceable under applicable law (small-claims and IP/abuse injunctive relief excepted)</li>
+      <li>EU / UK / Canada consumers generally retain local-court rights where arbitration would be unenforceable</li>
     </ol>
+    <p>LAWYER REVIEW REQUIRED: mandatory arbitration clauses are frequently unenforceable against EU/UK consumers — confirm whether those users should be excluded from arbitration entirely.</p>
     <h3>13.3 Class Action Waiver</h3>
-    <p>To the extent permitted by applicable law, you waive the right to participate in class action lawsuits against Buntly. Note: This waiver may not apply to California consumers under CPRA.</p>
+    <p>To the extent permitted by applicable law, you waive the right to participate in class action lawsuits against Buntly. Note: This waiver may not apply where prohibited (including certain California consumer claims).</p>
 
     <h2>Section 14 — Termination</h2>
     <ul>
-      <li>You may delete your account at any time via Settings → Delete Account</li>
+      <li>You may delete your account at any time via Settings → Legal &amp; Privacy → Delete my account</li>
+      <li>Deletion uses soft-delete + <strong>30-day</strong> recovery + hard purge (legal holds may delay purge; consent, crisis-consent, privacy-request, device-session, legal-hold, audit, and related evidence rows may retain email/identity stamps as implemented; other AI conversation logs may be anonymized rather than fully erased — see Privacy Policy)</li>
       <li>We may terminate accounts that violate these Terms</li>
       <li>Upon termination, your right to use the service ends immediately</li>
       <li>Data deletion follows our Privacy Policy retention schedule</li>

@@ -126,12 +126,17 @@
 
   <main class="wrap">
     <h1>Privacy Policy</h1>
-    <p class="meta"><strong>Effective date:</strong> June 2026 &nbsp;·&nbsp; <strong>Last updated:</strong> June 2026</p>
+    <p class="meta"><strong>Effective date:</strong> August 5, 2026 &nbsp;·&nbsp; <strong>Last updated:</strong> August 9, 2026 &nbsp;·&nbsp; <strong>Version:</strong> 2026-08-09</p>
+
+    <div class="draft-banner">
+      <strong>Draft for lawyer review.</strong>
+      This document is an AI-assisted draft prepared for Buntly (India LLP, registration pending). It is not final legal advice. Have qualified counsel review before publication.
+    </div>
 
     <h2>Section 1 — Who We Are and How to Contact Us</h2>
     <p><strong>Buntly</strong> (“Company,” “we,” “us,” “our”) operates the Buntly mobile application and related services — an AI-powered dog health companion for dog parents in India, the United States, and other markets.</p>
     <p><strong>Registered entity:</strong> India (LLP registration pending)</p>
-    <p><strong>Grievance Officer (India DPDP):</strong> Buntly Privacy Team — <a href="mailto:privacy@buntly.app">privacy@buntly.app</a></p>
+    <p><strong>Grievance / privacy contact:</strong> <a href="mailto:privacy@buntly.app">privacy@buntly.app</a> — Grievance Officer details in the Grievance Officer section below ([FOUNDER ACTION: insert appointed Grievance Officer name, email, and address before India launch])</p>
     <p><strong>Response time:</strong> We aim to respond to all privacy requests within <strong>30 days</strong>.</p>
     <p><strong>For California residents:</strong> <a href="mailto:privacy@buntly.app">privacy@buntly.app</a></p>
 
@@ -140,7 +145,7 @@
     <p><strong>“Sensitive Personal Data”</strong> means personal data requiring heightened protection under applicable law, including: health and medical information about your dog that you log in the app; symptoms, diagnoses, medications, and vet records; and AI conversations about health, emergencies, or medical concerns.</p>
     <p><strong>“Data Fiduciary”</strong> (India DPDP Act, 2023) means the entity that determines the purpose and means of processing personal data — that entity is <strong>Buntly</strong>.</p>
     <p><strong>“Data Principal”</strong> (India DPDP Act, 2023) means you — the individual to whom the personal data relates.</p>
-    <p><strong>“AI Features”</strong> means Claude-powered functionality in Buntly, including Crisis Companion, breed information, health guidance, vet prep summaries, insurance explainers, and related AI-assisted tools.</p>
+    <p><strong>“AI Features”</strong> means Claude-powered functionality in Buntly routed through our Supabase <strong>ai-gateway</strong>, including Crisis Companion, Breed Ask, Training Coach, health guidance, vet prep summaries, insurance explainers, and related AI-assisted tools.</p>
     <p><strong>“Processing”</strong> means any operation performed on personal data, including collection, storage, use, disclosure, transmission, deletion, or anonymization.</p>
 
     <h2>Section 3 — What Personal Data We Collect and Why</h2>
@@ -157,7 +162,7 @@
         <tbody>
           <tr>
             <td><strong>A) Account Data</strong></td>
-            <td>Email address; display name (optional); password (hashed — never stored in plain text)</td>
+            <td>Email address; display name (optional); password (hashed — never stored in plain text); Apple Sign-In / Google Sign-In tokens when used; optional Face ID / biometric unlock flag (biometrics stay on device); consent records</td>
             <td>Create and secure your account; authenticate you; communicate service messages</td>
             <td>Contract (to provide the service); Consent (India DPDP where required)</td>
           </tr>
@@ -169,27 +174,27 @@
           </tr>
           <tr>
             <td><strong>C) Health &amp; Medical Data</strong> <em>(SENSITIVE)</em></td>
-            <td>Health logs, symptoms, medications, dosages, vet visit records, vaccination records, medical conditions and diagnoses entered by you</td>
+            <td>Health logs, symptoms, medications, dosages, vet visit records, vaccination records, vet documents, mood/behavior/activity/food/water logs, medical conditions and diagnoses entered by you; food barcode scans</td>
             <td>Health record management; reminders; trend analysis; AI context (where enabled); vet prep summaries</td>
             <td><strong>Explicit Consent</strong> (required for sensitive data). This is sensitive personal data under India DPDP and special category data under GDPR where applicable.</td>
           </tr>
           <tr>
             <td><strong>D) AI Conversation Data</strong> <em>(SENSITIVE)</em></td>
-            <td>All messages to Crisis Companion; messages to breed AI and health AI features; AI responses; emergency keywords triggered</td>
+            <td>Messages to Crisis Companion, Breed Ask, Training Coach, and related AI features; AI responses; relevant dog/health context attached for the request</td>
             <td>Deliver AI guidance; safety monitoring; quality assurance</td>
-            <td><strong>Explicit Consent</strong>. Retention: <strong>90 days</strong> from conversation date, then permanently deleted. Transmitted to <strong>Anthropic PBC (USA)</strong> for processing.</td>
+            <td><strong>Explicit Consent</strong>. Routed via Supabase <strong>ai-gateway</strong> to <strong>Anthropic PBC (USA)</strong>. Account email and payment details are <strong>not</strong> sent to Anthropic. On account purge: Crisis transcripts are <strong>hard-deleted</strong>; other <code>ai_conversation_log</code> rows are <strong>anonymized</strong> (identity cleared, content retained) as implemented. <strong>[VERIFY]</strong> any shorter time-based AI auto-purge.</td>
           </tr>
           <tr>
             <td><strong>E) Device &amp; Technical Data</strong></td>
-            <td>Device ID (iOS Vendor ID / Android ID); device model; OS version; app version; IP address (at login, not stored long-term); app session data</td>
-            <td>Security; fraud prevention; debugging; service delivery</td>
+            <td>Device ID (iOS Vendor ID / Android ID); device model; OS version; app version; IP address (at login, not stored long-term); app session data; crash diagnostics (Sentry); AI reliability diagnostics via Datadog LLM Observability when configured (truncated/redacted AI prompt/response previews from edge functions — not your full health log archive); Expo Push tokens when notifications enabled; camera/mic access when you use photo, barcode, or crisis video features</td>
+            <td>Security; fraud prevention; debugging; service delivery; notifications; media capture you request</td>
             <td>Legitimate interest (security); Consent where required</td>
           </tr>
           <tr>
-            <td><strong>F) Usage Data</strong> (Anonymized)</td>
-            <td>Feature usage patterns; crash reports; performance metrics</td>
+            <td><strong>F) Usage Data</strong></td>
+            <td>Feature usage patterns; screen/funnel events; crash reports; performance metrics</td>
             <td>Improve reliability and product experience</td>
-            <td>Legitimate interest; Consent. Processed by PostHog in anonymized/pseudonymized form.</td>
+            <td>Legitimate interest; Consent. Product analytics via PostHog (event-style usage; not full health notes or AI chat text).</td>
           </tr>
           <tr>
             <td><strong>G) Payment Data</strong></td>
@@ -199,9 +204,15 @@
           </tr>
           <tr>
             <td><strong>H) Location Data</strong></td>
-            <td>Approximate location during Emergency Vet Finder search <strong>only</strong>. <strong>NOT</strong> stored after search completes. <strong>NOT</strong> used for any other purpose.</td>
-            <td>Show nearby emergency veterinary clinics during active search</td>
+            <td><strong>Vet/places search:</strong> approximate/precise location during Emergency Vet Finder / places search via device location to show nearby clinics and pet-friendly places. Location/search queries are sent to <strong>Foursquare Places</strong> (default places-search provider) and may also use <strong>Google Maps / Places</strong> for geocoding, map display, and as a fallback or alternate places provider when configured. <strong>Walks:</strong> GPS route points stored for walk sessions you start. <strong>Weather:</strong> approximate coordinates may be sent to OpenWeatherMap for activity suggestions.</td>
+            <td>Show nearby clinics; record walks you start; weather-aware suggestions</td>
             <td>Consent (requested at time of use)</td>
+          </tr>
+          <tr>
+            <td><strong>I) Referrals, promo codes &amp; affiliate links</strong></td>
+            <td><strong>Referral codes and redemptions:</strong> code, redemption status, related entitlement grants (e.g., time-limited premium access), and account identifiers needed to prevent abuse and deliver the benefit. <strong>Support / promotional discount codes:</strong> code, whether it succeeded, and entitlement/discount metadata. <strong>Amazon affiliate links:</strong> outbound shopping links may include our affiliate tag; we do not receive your Amazon account credentials or payment card through those links; Amazon processes purchases under its own terms; we may receive aggregate affiliate reporting consistent with Amazon’s affiliate program.</td>
+            <td>Run referral and promo programs; attribute outbound Amazon (and similar) shopping clicks when you choose those links</td>
+            <td>Contract; Consent where required</td>
           </tr>
         </tbody>
       </table>
@@ -210,18 +221,17 @@
     <h2>Section 4 — Artificial Intelligence Disclosure</h2>
     <div class="box-amber">
       <h3>4.1 AI Provider</h3>
-      <p>Buntly uses <strong>Claude</strong>, developed by <strong>Anthropic PBC</strong>, 799 Market Street, San Francisco, CA 94103, USA (“Anthropic”) to power AI features.</p>
+      <p>Buntly uses <strong>Claude</strong>, developed by <strong>Anthropic PBC</strong>, 799 Market Street, San Francisco, CA 94103, USA (“Anthropic”) to power AI features. Requests go through our Supabase <strong>ai-gateway</strong> edge function (not directly from the client to Anthropic).</p>
 
       <h3>4.2 Data Sent to Anthropic</h3>
       <p>When you use any AI feature, the following may be transmitted to Anthropic’s servers in the United States:</p>
       <ul>
-        <li class="check-yes">✓ Your message text</li>
-        <li class="check-yes">✓ Your dog’s name (if included in message)</li>
-        <li class="check-yes">✓ Health symptoms and conditions you describe</li>
-        <li class="check-yes">✓ Context from your dog’s profile (if enabled)</li>
+        <li class="check-yes">✓ Your message / question text</li>
+        <li class="check-yes">✓ Relevant dog and health context needed for the response (e.g., dog name, breed, conditions you logged or describe)</li>
+        <li class="check-yes">✓ Optional photos you attach for analysis features</li>
         <li class="check-no">✗ Your email address (NOT sent)</li>
         <li class="check-no">✗ Your payment information (NOT sent)</li>
-        <li class="check-no">✗ Your precise location (NOT sent)</li>
+        <li class="check-no">✗ Your precise location (NOT sent for AI inference)</li>
       </ul>
       <p>By using AI features, you <strong>explicitly consent</strong> to this international transfer of data to the USA.</p>
       <p>Anthropic’s Privacy Policy: <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">anthropic.com/privacy</a><br>
@@ -266,16 +276,25 @@
           <tr><th>Processor</th><th>Location</th><th>Data Shared</th><th>Purpose</th><th>Safeguard</th></tr>
         </thead>
         <tbody>
-          <tr><td>Anthropic PBC</td><td>USA</td><td>AI conversation content</td><td>AI processing</td><td>Standard Contractual Clauses</td></tr>
-          <tr><td>Supabase Inc</td><td>USA</td><td>All user data</td><td>Database hosting</td><td>DPA in place</td></tr>
-          <tr><td>RevenueCat Inc</td><td>USA</td><td>Subscription status</td><td>Payment management</td><td>DPA in place</td></tr>
-          <tr><td>PostHog Inc</td><td>USA</td><td>Anonymized usage</td><td>Analytics</td><td>Data Processing Agreement</td></tr>
-          <tr><td>Resend Inc</td><td>USA</td><td>Email address</td><td>Transactional email</td><td>DPA in place</td></tr>
-          <tr><td>Apple Inc</td><td>USA</td><td>As required by App Store</td><td>App distribution</td><td>Apple’s DPA</td></tr>
-          <tr><td>Expo (Expo Technology Inc)</td><td>USA</td><td>App build data</td><td>App deployment</td><td>Standard terms</td></tr>
+          <tr><td>Supabase</td><td>USA</td><td>Account, dog, health, AI session storage, auth, files</td><td>Database, auth, storage, edge functions</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Anthropic PBC (via ai-gateway)</td><td>USA</td><td>Questions + relevant dog/health context (not email/payment)</td><td>AI inference</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Sentry</td><td>USA</td><td>Crash/error diagnostics</td><td>Reliability monitoring</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Datadog (LLM Observability, when configured)</td><td>USA</td><td>Truncated and redacted AI input/output previews and related diagnostic metadata from AI edge functions (e.g., ai-gateway and breed features) — not full conversation archives</td><td>AI reliability and debugging</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>PostHog Inc</td><td>USA</td><td>Product analytics events</td><td>Product analytics</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>RevenueCat Inc</td><td>USA</td><td>Subscription / entitlement status (not card numbers)</td><td>Subscription management</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Expo Push</td><td>USA</td><td>Push tokens / delivery metadata when notifications enabled</td><td>Push notifications</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Foursquare Places</td><td>USA</td><td>Approximate location and search queries for nearby veterinary clinics and pet-friendly places</td><td>Default Emergency Vet Finder / places-search provider</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Google Maps / Places</td><td>USA</td><td>Geocoding, map display, and location/search queries when used as a fallback or alternate places provider</td><td>Maps and alternate places search</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Apple Sign-In / Google Sign-In</td><td>USA</td><td>Identity tokens / profile fields when you choose social sign-in</td><td>Authentication</td><td>Platform terms</td></tr>
+          <tr><td>Resend Inc</td><td>USA</td><td>Email address + transactional message content</td><td>Transactional email</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Open Pet Food Facts</td><td>Public API</td><td>Barcode / product lookup</td><td>Food scanner ingredient lookup</td><td>Public data source terms</td></tr>
+          <tr><td>OpenWeatherMap</td><td>USA</td><td>Approximate coordinates for weather lookup</td><td>Weather-aware suggestions</td><td>[VERIFY] DPA / SCC status</td></tr>
+          <tr><td>Apple Inc / Google</td><td>USA</td><td>As required by App Store / Play and IAP</td><td>App distribution &amp; payments</td><td>Platform terms</td></tr>
+          <tr><td>Amazon (affiliate program)</td><td>USA</td><td>Affiliate tag and click attribution on outbound shopping links you choose to open; we do not receive your Amazon payment card through Buntly</td><td>Commercial partner / independent controller for purchases on Amazon</td><td>Amazon affiliate / platform terms</td></tr>
         </tbody>
       </table>
     </div>
+    <p>LAWYER REVIEW REQUIRED: confirm SCC/IDTA/DPA status for each processor before finalizing transfer language. OneSignal is <strong>not</strong> integrated and is not a processor.</p>
 
     <h3>5.2 We DO NOT</h3>
     <ul>
@@ -293,27 +312,31 @@
 
     <h2>Section 6 — International Data Transfers</h2>
     <ul>
-      <li>All data is stored on Supabase servers (USA)</li>
-      <li>AI processing occurs on Anthropic servers (USA)</li>
-      <li>Analytics processed by PostHog (USA)</li>
+      <li>App data is stored on Supabase servers (USA)</li>
+      <li>AI processing occurs on Anthropic servers (USA) via ai-gateway</li>
+      <li>Analytics processed by PostHog (USA); crash diagnostics by Sentry (USA); AI reliability diagnostics by Datadog when configured (USA)</li>
     </ul>
     <p><strong>For India users:</strong> Transfer to the USA occurs under your explicit consent as required by the India DPDP Act, 2023.</p>
-    <p><strong>For EU/UK users (if applicable):</strong> Transfers occur under Standard Contractual Clauses (SCCs) approved by the European Commission.</p>
+    <p><strong>For EU/UK users (if applicable):</strong> Transfers may rely on Standard Contractual Clauses (SCCs) or equivalent safeguards — LAWYER REVIEW REQUIRED before finalizing.</p>
+    <p>LAWYER REVIEW REQUIRED: confirm whether Quebec Law 25 / other provincial Canadian obligations apply beyond PIPEDA.</p>
 
-    <h2>Section 7 — Data Retention</h2>
+    <h2>Section 7 — Data Retention and Account Deletion</h2>
+    <p>Account deletion (as implemented): <strong>soft-delete / deactivation immediately</strong> → <strong>30-day recovery window</strong> → scheduled <strong>hard purge</strong>. Active <strong>legal holds</strong> can delay purge.</p>
+    <p><strong>Retained after purge (as implemented):</strong> Before the auth user is permanently removed, we stamp limited identity evidence onto designated service-role evidence tables so we can defend legal claims, investigate abuse, and detect repeat bad actors. As implemented, that stamp may include your <strong>full email address</strong>, a one-way <strong>email hash</strong>, <strong>email domain</strong>, <strong>display name</strong> (if available), internal <strong>user id</strong>, and account created/deleted timestamps on rows in: <code>user_consent_log</code>, <code>crisis_ai_consent</code>, <code>privacy_requests</code>, <code>underage_reports</code>, <code>legal_holds</code>, <code>admin_user_notes</code>, <code>device_sessions</code>, and <code>audit_log</code>. Separately, <code>ai_conversation_log</code> rows are <strong>anonymized</strong> (identity fields cleared; conversation content/timestamps retained as implemented — not re-stamped with your email). Anonymized subscription event aggregates may also remain where identity is stripped. Full email on evidence tables is retained for legal/compliance purposes and is not exposed through ordinary client-side app queries.</p>
     <div class="table-wrap">
       <table>
         <thead>
           <tr><th>Data Type</th><th>Retention Period</th><th>Deletion Method</th></tr>
         </thead>
         <tbody>
-          <tr><td>Account data</td><td>Until account deletion + 30 days</td><td>Permanent deletion</td></tr>
-          <tr><td>Dog profile data</td><td>Until account deletion + 30 days</td><td>Permanent deletion</td></tr>
-          <tr><td>Health logs</td><td>Until account deletion + 30 days</td><td>Permanent deletion</td></tr>
-          <tr><td>AI conversations</td><td>90 days from conversation</td><td>Permanent deletion</td></tr>
-          <tr><td>Payment records</td><td>7 years (tax/legal requirement)</td><td>Anonymized after 7 years</td></tr>
-          <tr><td>Security logs</td><td>1 year</td><td>Permanent deletion</td></tr>
-          <tr><td>Deleted account data</td><td>30 days grace period</td><td>Permanent deletion</td></tr>
+          <tr><td>Account / dog / health logs</td><td>Until deletion request, then 30-day grace</td><td>Hard purge after grace (unless legal hold)</td></tr>
+          <tr><td>Walk GPS sessions</td><td>Until deleted or account purge</td><td>Hard purge with account</td></tr>
+          <tr><td>Food ingredient scans</td><td><strong>Automatically deleted after 90 days</strong> from scan time by a scheduled database job (<code>purge-expired-food-ingredient-scans</code> → <code>purge_expired_food_ingredient_scans</code>)</td><td>Permanent deletion</td></tr>
+          <tr><td>Crisis AI transcripts</td><td>While account active <strong>[VERIFY]</strong> shorter auto-purge</td><td>Hard-deleted on account purge</td></tr>
+          <tr><td>Other AI logs (<code>ai_conversation_log</code>)</td><td>While linked; long-term evidence comments ~7 years <strong>[VERIFY]</strong></td><td>Anonymized on purge (identity cleared; content retained)</td></tr>
+          <tr><td>Consent / evidence tables</td><td>Identity evidence stamped before purge (see above)</td><td>Not hard-deleted in purge as implemented</td></tr>
+          <tr><td>Subscription events</td><td><strong>[VERIFY]</strong> legal/tax retention</td><td>Identity stripped on purge; aggregates may remain</td></tr>
+          <tr><td>Deleted account operational data</td><td>30 days grace period</td><td>Hard purge after grace</td></tr>
         </tbody>
       </table>
     </div>
@@ -354,6 +377,31 @@
     <strong>Response time:</strong> 30 days<br>
     Identity verification required before processing requests.</p>
 
+    <h2>Grievance Officer (India — DPDP Act 2023)</h2>
+    <p>
+      In accordance with the Digital Personal Data
+      Protection Act 2023, Grievance Officer details for India:
+    </p>
+    <ul>
+      <li><strong>Grievance Officer:</strong> [FOUNDER ACTION: insert appointed Grievance Officer name, email, and address before India launch]</li>
+      <li><strong>Email for privacy / grievance requests:</strong>
+        privacy@buntly.app</li>
+      <li><strong>Note:</strong> Replace the FOUNDER ACTION line with the appointed officer’s legal name, direct email if different from privacy@, and postal address before publishing for India. Do not ship India DPDP-facing materials with this bracket left in place.</li>
+      <li><strong>Response time:</strong>
+        Within 48 hours</li>
+      <li><strong>Resolution time:</strong>
+        Within 30 days</li>
+    </ul>
+    <p>
+      You can contact the Grievance Officer for:
+    </p>
+    <ul>
+      <li>Data deletion requests</li>
+      <li>Privacy complaints</li>
+      <li>Questions about your personal data</li>
+      <li>Correction of inaccurate data</li>
+    </ul>
+
     <h2>Section 9 — Children’s Privacy</h2>
     <p>Buntly is not directed at children under the age of <strong>13</strong> (USA) or under <strong>18</strong> (India, for certain data processing). We do not knowingly collect personal information from children under 13. If we discover we have collected data from a child under 13, we will delete it immediately. If you believe a child has provided us data, contact: <a href="mailto:privacy@buntly.app">privacy@buntly.app</a></p>
 
@@ -365,20 +413,24 @@
       <li>Row-level security on all database tables</li>
       <li>Two-factor authentication for all admin access</li>
       <li>Regular security audits</li>
-      <li>Jailbreak/root detection on mobile app</li>
-      <li>Secure token storage (device keychain)</li>
+      <li>Secure token storage (device keychain / SecureStore)</li>
+      <li>On mobile devices, we check for signs of jailbreak or root (modified system security). If we detect that, Buntly may refuse to run so we can better protect your account and your dog's health data. Checks can fail open if the check itself errors, and may be disabled in internal builds.</li>
     </ul>
     <p>No system is 100% secure. In the event of a data breach affecting your rights, we will notify you within <strong>72 hours</strong> (GDPR standard) and within the timeframe required by applicable law.</p>
 
     <h2>Section 11 — Cookies and Tracking</h2>
     <p>The Buntly mobile app does not use cookies. If you access our website, we use essential cookies only (session management). We do not use advertising cookies or third-party tracking cookies.</p>
 
-    <h2>Section 12 — Changes to This Policy</h2>
+    <h2>Section 12 — Third-Party Links</h2>
+    <p>The app may link to external websites (vets, poison control, insurers). We are not responsible for their privacy practices. Review their policies separately.</p>
+    <p>Some in-app shopping or product suggestions may deep-link to Amazon with our affiliate tag, or to other retailers without an affiliate tag. Those sites are outside Buntly; their privacy practices apply once you leave the app.</p>
+
+    <h2>Section 13 — Changes to This Policy</h2>
     <p>We will notify you of material changes via email notification, in-app notification, and an updated “Last Modified” date on this page. Continued use after 30 days of notice constitutes acceptance.</p>
 
-    <h2>Section 13 — Contact and Complaints</h2>
+    <h2>Section 14 — Contact and Complaints</h2>
     <p><strong>Privacy questions:</strong> <a href="mailto:privacy@buntly.app">privacy@buntly.app</a><br>
-    <strong>Grievance Officer (India):</strong> Buntly Privacy Team — <a href="mailto:privacy@buntly.app">privacy@buntly.app</a><br>
+    <strong>Grievance Officer (India):</strong> [FOUNDER ACTION: insert appointed Grievance Officer name, email, and address before India launch] — privacy requests: <a href="mailto:privacy@buntly.app">privacy@buntly.app</a><br>
     <strong>Response time:</strong> 30 days</p>
     <p><strong>India users</strong> may also complain to the Data Protection Board of India (once operational).</p>
     <p><strong>California users</strong> may contact the California Privacy Protection Agency: <a href="https://cppa.ca.gov" target="_blank" rel="noopener">cppa.ca.gov</a></p>
