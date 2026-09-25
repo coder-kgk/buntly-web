@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buntly: AI Dog Health Companion</title>
   <meta name="description" content="Buntly is the AI-powered companion for dog parents: calm guidance in scary moments, health history in one place, and care your whole household can share." />
-  <link rel="canonical" href="https://buntly.app/" />
+  <link rel="canonical" href="https://coder-kgk.github.io/buntly-web/" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://buntly.app/" />
@@ -364,9 +364,7 @@
 </head>
 <body>
   <!-- Injected by app/web/landing/server.js when you run npm start -->
-  <script id="buntly-landing-config" type="application/json">__BUNTLY_LANDING_CONFIG_JSON__</script>
-
-  <p class="config-note">Waitlist needs Supabase: run <code>npm start</code> in <code>app/web/landing</code> with a filled <code>.env</code> (see <code>README.md</code>). Apply <code>048_waitlist.sql</code> in Supabase first.</p>
+  <script id="buntly-landing-config" type="application/json">{"supabaseUrl": "https://tgnsomgwgwsjtnozyfxa.supabase.co", "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnbnNvbWd3Z3dzanRub3p5ZnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNjQwMzEsImV4cCI6MjA5Mzk0MDAzMX0.tzcrX4FijPvIZvQnAM1pbXkHgWXjeEx2F0e-hHNDzmk"}</script>
 
   <header class="hero">
     <span class="hero-paw" aria-hidden="true">🐾</span>
@@ -586,7 +584,7 @@
     if (!node) return null;
     try {
       var t = node.textContent.trim();
-      if (!t || t.indexOf('__BUNTLY_LANDING_CONFIG_JSON__') >= 0) return null;
+      if (!t || t.indexOf('{"supabaseUrl": "https://tgnsomgwgwsjtnozyfxa.supabase.co", "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnbnNvbWd3Z3dzanRub3p5ZnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNjQwMzEsImV4cCI6MjA5Mzk0MDAzMX0.tzcrX4FijPvIZvQnAM1pbXkHgWXjeEx2F0e-hHNDzmk"}') >= 0) return null;
       return JSON.parse(t);
     } catch (e) {
       return null;
