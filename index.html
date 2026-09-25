@@ -1,158 +1,729 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Buntly is coming soon — AI-powered dog health companion for anxious dog parents in India and the USA.">
-  <meta name="robots" content="index, follow">
-  <title>Buntly — Coming Soon</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buntly: AI Dog Health Companion</title>
+  <meta name="description" content="Buntly is the AI-powered companion for dog parents: calm guidance in scary moments, health history in one place, and care your whole household can share." />
+  <link rel="canonical" href="https://buntly.app/" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://buntly.app/" />
+  <meta property="og:title" content="Buntly: AI Dog Health Companion" />
+  <meta property="og:description" content="Your dog can't tell you what's wrong. Buntly can help. Join the waitlist for early access." />
+  <meta property="og:image" content="https://buntly.app/og-image.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Buntly" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Buntly: AI Dog Health Companion" />
+  <meta name="twitter:description" content="AI-powered companion for dog parents. Crisis guidance, health log, and more, in one warm, simple app." />
+  <meta name="twitter:image" content="https://buntly.app/og-image.png" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js" defer></script>
   <style>
     :root {
-      --primary: #6B9B37;
-      --primary-dark: #567a2c;
+      --brown: #8B6F47;
+      --brown-dark: #6d5638;
+      --cream: #FAF7F2;
+      --cream-deep: #f0ebe3;
       --text: #2C1810;
-      --muted: #5c4a3a;
-      --bg: #ffffff;
-      --surface: #f8faf5;
-      --border: rgba(44, 24, 16, 0.12);
-      --radius: 14px;
+      --muted: #6B5744;
+      --accent: #E8A87C;
+      --surface: #ffffff;
+      --ok: #27AE60;
+      --border: rgba(44, 24, 16, 0.1);
+      --shadow: 0 12px 40px rgba(44, 24, 16, 0.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1120px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--cream);
       color: var(--text);
       line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-size: 17px;
+      overflow-x: hidden;
     }
-    main {
-      flex: 1;
+    a { color: var(--brown); font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 92vh;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      padding: 72px 0 88px;
+      background: linear-gradient(155deg, var(--brown) 0%, var(--brown-dark) 48%, #5a4630 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 70% 20%, rgba(232, 168, 124, 0.18), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 10% 90%, rgba(250, 247, 242, 0.08), transparent 50%);
+      pointer-events: none;
+    }
+    .hero-paw {
+      position: absolute;
+      font-size: clamp(180px, 42vw, 420px);
+      right: -4%;
+      bottom: -8%;
+      opacity: 0.07;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: clamp(2rem, 5.2vw, 3.35rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      max-width: 15ch;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .hero .sub {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      opacity: 0.94;
+      max-width: 36ch;
+      margin-bottom: 32px;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+    .cta {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 3rem 1.5rem;
+      gap: 10px;
+      padding: 16px 28px;
+      border-radius: 999px;
+      background: var(--cream);
+      color: var(--brown-dark);
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    }
+    .cta:active { transform: translateY(0); }
+    .trust {
+      margin-top: 28px;
+      font-size: 0.95rem;
+      opacity: 0.88;
+    }
+    /* Sections */
+    section { padding: 72px 0; }
+    section.alt { background: var(--surface); }
+    section.tint { background: linear-gradient(180deg, var(--cream-deep) 0%, var(--cream) 100%); }
+    .section-head {
       text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
     }
-    .logo {
-      font-size: 2.5rem;
+    .section-head h2 {
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
       font-weight: 800;
-      color: var(--primary);
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
+      color: var(--brown);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
     }
-    .paw { font-size: 2rem; margin-bottom: 1.5rem; }
-    h1 {
-      font-size: clamp(1.75rem, 5vw, 2.25rem);
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      max-width: 28rem;
+    .section-head p { color: var(--muted); font-size: 1.1rem; }
+    /* Cards grid */
+    .grid-3 {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
-    .subtitle {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 26rem;
-      margin-bottom: 2.5rem;
+    .grid-2 {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-    .signup {
-      width: 100%;
-      max-width: 22rem;
-      margin-bottom: 2rem;
-    }
-    .signup label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      text-align: left;
-    }
-    .signup-row {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .signup input {
-      flex: 1;
-      min-width: 12rem;
-      padding: 0.875rem 1rem;
+    .card {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      font-size: 1rem;
-      outline: none;
+      padding: 26px 24px;
+      box-shadow: var(--shadow);
     }
-    .signup input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(107, 155, 55, 0.2);
-    }
-    .signup button {
-      padding: 0.875rem 1.25rem;
-      background: var(--primary);
-      color: #fff;
-      border: none;
+    section.alt .card { background: var(--cream); }
+    .card .emoji { font-size: 1.75rem; margin-bottom: 12px; }
+    .card h3 { font-size: 1.15rem; font-weight: 800; color: var(--brown); margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.98rem; line-height: 1.55; }
+    /* Feature tiles */
+    .feature-tile {
+      background: var(--surface);
       border-radius: var(--radius);
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .signup button:hover { background: var(--primary-dark); }
-    .signup-hint {
+    .feature-tile:hover {
+      border-color: rgba(139, 111, 71, 0.35);
+      box-shadow: 0 8px 32px rgba(139, 111, 71, 0.12);
+    }
+    .feature-tile .icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .feature-tile h3 { font-size: 1.12rem; font-weight: 800; color: var(--brown); margin-bottom: 8px; }
+    .feature-tile p { font-size: 0.95rem; color: var(--muted); line-height: 1.55; }
+    /* Comparison table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: var(--surface);
+    }
+    table.compare {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 520px;
+      font-size: 0.95rem;
+    }
+    table.compare th, table.compare td {
+      padding: 14px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    table.compare th:first-child, table.compare td:first-child { text-align: left; }
+    table.compare thead th {
+      background: var(--brown);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    table.compare thead th:first-child { background: var(--brown-dark); }
+    table.compare tbody tr:last-child td { border-bottom: none; }
+    table.compare tbody tr:nth-child(even) { background: rgba(250, 247, 242, 0.5); }
+    table.compare .hl { background: rgba(232, 168, 124, 0.25); font-weight: 700; }
+    /* Feature list */
+    .feature-list {
+      columns: 280px 2;
+      column-gap: 40px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .feature-list li {
+      break-inside: avoid;
+      list-style: none;
+      padding: 8px 0;
+      padding-left: 28px;
+      position: relative;
+      color: var(--text);
+    }
+    .feature-list li::before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+    }
+    .coming { text-align: center; margin-top: 24px; color: var(--muted); font-style: italic; }
+    /* Testimonials */
+    .quote { font-size: 1.05rem; line-height: 1.55; color: var(--text); margin-bottom: 14px; }
+    .attrib { font-size: 0.9rem; color: var(--brown); font-weight: 700; }
+    .beta-note { text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 28px; }
+    /* Waitlist */
+    #waitlist { scroll-margin-top: 24px; }
+    .waitlist-box {
+      max-width: 520px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, var(--surface) 0%, var(--cream) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.35s ease;
+    }
+    .waitlist-box.success {
+      animation: celebrate 0.65s ease;
+      box-shadow: 0 16px 48px rgba(39, 174, 96, 0.2);
+      border-color: rgba(39, 174, 96, 0.35);
+    }
+    @keyframes celebrate {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    .perks { list-style: none; margin: 20px 0 28px; }
+    .perks li { padding: 8px 0; color: var(--text); }
+    label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+    input[type="email"], input[type="text"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+    input:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: var(--brown);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--brown-dark); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-err { color: #C0392B; font-size: 0.92rem; margin-top: -8px; margin-bottom: 12px; display: none; }
+    .form-err.show { display: block; }
+    .success-msg { display: none; text-align: center; }
+    .success-msg.show { display: block; }
+    .success-msg h3 { color: var(--ok); font-size: 1.35rem; margin-bottom: 12px; }
+    .success-msg p { color: var(--muted); margin-bottom: 16px; }
+    .ref-box {
+      background: rgba(139, 111, 71, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 0.88rem;
+      word-break: break-all;
+      margin-top: 12px;
+      border: 1px dashed var(--brown);
+    }
+    /* FAQ */
+    .faq details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .faq summary {
+      font-weight: 800;
+      color: var(--brown);
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq details[open] summary { margin-bottom: 10px; }
+    .faq p { color: var(--muted); font-size: 0.98rem; }
+    /* Footer */
+    footer {
+      background: var(--brown-dark);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 48px 0 36px;
+      text-align: center;
+    }
+    footer .logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+    footer .tag { opacity: 0.85; font-size: 0.95rem; margin-bottom: 22px; }
+    footer nav { margin-bottom: 20px; }
+    footer nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 600;
+      opacity: 0.92;
+    }
+    footer nav a:hover { opacity: 1; text-decoration: underline; }
+    footer .heart { margin-top: 16px; font-size: 0.95rem; opacity: 0.88; }
+    footer .copy { margin-top: 12px; font-size: 0.85rem; opacity: 0.65; }
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .config-note {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 22px;
       font-size: 0.8rem;
       color: var(--muted);
-      margin-top: 0.5rem;
-      text-align: left;
-    }
-    .links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .links a {
-      color: var(--primary);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .links a:hover { text-decoration: underline; }
-    footer {
-      padding: 1.5rem;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.875rem;
-      border-top: 1px solid var(--border);
+      background: rgba(243, 156, 18, 0.12);
+      border-bottom: 1px solid rgba(243, 156, 18, 0.35);
     }
-    footer a { color: var(--primary); text-decoration: none; }
   </style>
 </head>
 <body>
-  <main>
-    <div class="logo">Buntly</div>
-    <div class="paw" aria-hidden="true">🐾</div>
-    <h1>Buntly is coming soon</h1>
-    <p class="subtitle">AI-powered dog health companion — so you never face a scary dog moment alone again.</p>
+  <!-- Injected by app/web/landing/server.js when you run npm start -->
+  <script id="buntly-landing-config" type="application/json">__BUNTLY_LANDING_CONFIG_JSON__</script>
 
-    <form class="signup" onsubmit="event.preventDefault(); alert('Thanks! We\\'ll notify you when Buntly launches.');">
-      <label for="email">Get notified at launch</label>
-      <div class="signup-row">
-        <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
-        <button type="submit">Notify me</button>
+  <p class="config-note">Waitlist needs Supabase: run <code>npm start</code> in <code>app/web/landing</code> with a filled <code>.env</code> (see <code>README.md</code>). Apply <code>048_waitlist.sql</code> in Supabase first.</p>
+
+  <header class="hero">
+    <span class="hero-paw" aria-hidden="true">🐾</span>
+    <div class="wrap">
+      <h1>Your dog can't tell you what's wrong.<br />Buntly can help.</h1>
+      <p class="sub">The AI-powered companion for dog parents that shows up in scary moments, and every day in between.</p>
+      <a class="cta" href="#waitlist">Join the waitlist, it's free</a>
+      <p class="trust">Built by a dog parent, for dog parents 🐾</p>
+    </div>
+  </header>
+
+  <section class="tint reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>We've all been there.</h2>
+        <p>Late nights, forgotten details, scattered info. You're not alone.</p>
       </div>
-      <p class="signup-hint">UI only — no backend connected yet.</p>
-    </form>
+      <div class="grid-3">
+        <div class="card">
+          <div class="emoji" aria-hidden="true">🌙</div>
+          <h3>2am panic</h3>
+          <p>It's 2am. Your dog is shaking. Google gives you 47 conflicting articles.</p>
+        </div>
+        <div class="card">
+          <div class="emoji" aria-hidden="true">😰</div>
+          <h3>Memory gaps</h3>
+          <p>The vet asks about symptoms from 3 months ago. You can't remember.</p>
+        </div>
+        <div class="card">
+          <div class="emoji" aria-hidden="true">📋</div>
+          <h3>Scattered details</h3>
+          <p>Your pet sitter needs emergency info. It's scattered across texts and emails.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <nav class="links" aria-label="Legal">
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms of Service</a>
-      <a href="mailto:privacy@buntly.app">Contact</a>
-    </nav>
-  </main>
+  <section class="alt reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Buntly knows your dog.</h2>
+        <p>One calm place for guidance, records, and the people who love them.</p>
+      </div>
+      <div class="grid-2" style="max-width: 900px; margin: 0 auto;">
+        <div class="feature-tile">
+          <div class="icon">🆘</div>
+          <h3>Crisis Companion</h3>
+          <p>Step-by-step guidance personalized to your dog's breed and history.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="icon">📋</div>
+          <h3>Health Log</h3>
+          <p>Every incident, every symptom, every vet visit, in one place.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="icon">💉</div>
+          <h3>Vaccination Tracker</h3>
+          <p>Never miss a vaccine. Smart reminders based on your dog's actual schedule.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="icon">🐾</div>
+          <h3>Breed Health Alerts</h3>
+          <p>Know your Lab's hip dysplasia risk before it becomes a crisis.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="icon">🏠</div>
+          <h3>Shared Household</h3>
+          <p>Share care with partners, sitters, and family, so everyone stays informed.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="icon">📄</div>
+          <h3>Emergency Card</h3>
+          <p>One link. Everything emergency responders need. No login required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Not another generic pet app.</h2>
+        <p>Side-by-side with what you might use today.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="compare" role="grid" aria-label="Feature comparison">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Google</th>
+              <th>Other apps</th>
+              <th>Buntly</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Knows your dog's breed</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+            <tr><td>Knows health history</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+            <tr><td>Crisis guidance</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+            <tr><td>Shareable emergency card</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+            <tr><td>Household sharing</td><td>❌</td><td>❌</td><td class="hl">✅</td></tr>
+            <tr><td>Free to use</td><td>✅</td><td>❌</td><td class="hl">✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Everything your dog needs. In one place.</h2>
+      </div>
+      <ul class="feature-list">
+        <li>Crisis Companion</li>
+        <li>Health Log</li>
+        <li>Vaccination Tracker</li>
+        <li>Breed Health Alerts</li>
+        <li>Weight Tracker</li>
+        <li>Activity Logger</li>
+        <li>Grooming Tracker</li>
+        <li>Food &amp; Nutrition Guide</li>
+        <li>Vet Appointments</li>
+        <li>Vet Documents Storage</li>
+        <li>Emergency Card</li>
+        <li>Household Sharing</li>
+        <li>Medication Reminders</li>
+        <li>Daily Health Tips</li>
+        <li>Milestones &amp; Celebrations</li>
+        <li>Document Scanner</li>
+        <li>Multi-dog Support</li>
+      </ul>
+      <p class="coming">And much more coming soon…</p>
+    </div>
+  </section>
+
+
+  <section id="waitlist" class="tint reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Be first. Get 3 months free.</h2>
+        <p>Join the waitlist and get:</p>
+      </div>
+      <div class="waitlist-box" id="waitlist-box">
+        <ul class="perks">
+          <li>✨ 3 months of premium free</li>
+          <li>🎯 Early access before public launch</li>
+          <li>🐾 Founding member status forever</li>
+        </ul>
+        <form id="waitlist-form">
+          <label for="wl-email">Email</label>
+          <input id="wl-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+          <label for="wl-dog">Your dog's name <span style="text-transform:none;font-weight:500">(optional)</span></label>
+          <input id="wl-dog" name="dog_name" type="text" autocomplete="nickname" placeholder="e.g. Bailey" maxlength="80" />
+          <p id="wl-err" class="form-err" role="alert"></p>
+          <button type="submit" class="btn-submit" id="wl-submit">Join waitlist</button>
+        </form>
+        <div id="wl-success" class="success-msg" aria-live="polite">
+          <h3>You're on the list! 🎉</h3>
+          <p>We'll email you when Buntly launches. Share with other dog parents to move up the list.</p>
+          <p style="font-size:0.9rem;color:var(--muted);">Your personal link:</p>
+          <div class="ref-box" id="wl-ref-link"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt faq reveal">
+    <div class="wrap" style="max-width: 720px;">
+      <div class="section-head">
+        <h2>FAQ</h2>
+      </div>
+      <details>
+        <summary>Is Buntly free?</summary>
+        <p>Core features are free forever. Premium features are available via subscription.</p>
+      </details>
+      <details>
+        <summary>Is this real veterinary advice?</summary>
+        <p>No. Buntly provides general guidance to help you while you seek professional care. Always consult your vet.</p>
+      </details>
+      <details>
+        <summary>When does it launch?</summary>
+        <p>We're putting finishing touches on the app. Join the waitlist for early access.</p>
+      </details>
+      <details>
+        <summary>What platforms?</summary>
+        <p>iOS, Android, and Web.</p>
+      </details>
+      <details>
+        <summary>Is my data safe?</summary>
+        <p>Yes. We never sell your data. GDPR compliant. Delete anytime.</p>
+      </details>
+    </div>
+  </section>
 
   <footer>
-    <p>&copy; 2026 Buntly · <a href="mailto:privacy@buntly.app">privacy@buntly.app</a></p>
+    <div class="wrap">
+      <div class="logo">🐾 Buntly</div>
+      <p class="tag">Never face a scary dog moment alone again.</p>
+      <nav aria-label="Legal">
+        <a href="../legal.html#privacy">Privacy Policy</a>
+        <a href="../legal.html#terms">Terms</a>
+        <a href="../legal.html#medical">Medical Disclaimer</a>
+        <a href="mailto:hello@buntly.app">Contact</a>
+      </nav>
+      <p class="heart">Made with ❤️ for dog parents</p>
+      <p class="copy">© 2026 Buntly</p>
+    </div>
   </footer>
+
+  <script>
+(function () {
+  var SUPABASE_URL = '';
+  var SUPABASE_ANON_KEY = '';
+
+  function readInjectedConfig() {
+    var node = document.getElementById('buntly-landing-config');
+    if (!node) return null;
+    try {
+      var t = node.textContent.trim();
+      if (!t || t.indexOf('__BUNTLY_LANDING_CONFIG_JSON__') >= 0) return null;
+      return JSON.parse(t);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function applyLandingConfig() {
+    var cfg = readInjectedConfig();
+    if (!cfg || !cfg.supabaseUrl || !cfg.anonKey) return false;
+    SUPABASE_URL = String(cfg.supabaseUrl).trim().replace(/\/$/, '');
+    SUPABASE_ANON_KEY = String(cfg.anonKey).trim();
+    return true;
+  }
+
+  applyLandingConfig();
+
+  function genReferralCode() {
+    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var s = '';
+    for (var i = 0; i < 8; i++) s += chars[Math.floor(Math.random() * chars.length)];
+    return s;
+  }
+
+  function getReferredBy() {
+    try {
+      var p = new URLSearchParams(window.location.search);
+      return (p.get('ref') || '').trim().slice(0, 32) || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function updateReveals() {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.classList.contains('is-visible')) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight - 48) el.classList.add('is-visible');
+    });
+  }
+  window.addEventListener('scroll', updateReveals, { passive: true });
+  window.addEventListener('load', updateReveals);
+
+  var form = document.getElementById('waitlist-form');
+  var errEl = document.getElementById('wl-err');
+  var submitBtn = document.getElementById('wl-submit');
+  var successEl = document.getElementById('wl-success');
+  var refBox = document.getElementById('wl-ref-link');
+  var box = document.getElementById('waitlist-box');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errEl.classList.remove('show');
+    errEl.textContent = '';
+
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      errEl.textContent = 'Missing Supabase config. Serve this page with npm start in app/web/landing and a filled .env file.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    var supaLib = window.supabase;
+    if (!supaLib || !supaLib.createClient) {
+      errEl.textContent = 'Could not load Supabase. Check your connection and try again.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    var sb = supaLib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+
+    var email = document.getElementById('wl-email').value.trim();
+    function isValidWaitlistEmail(s) {
+      if (!s || s.length > 254) return false;
+      if (s.indexOf(' ') >= 0 || s.indexOf('@') < 1) return false;
+      var local = s.split('@')[0] || '';
+      var domain = s.split('@').slice(1).join('@') || '';
+      if (!local || local.length > 64 || !domain || domain.indexOf('.') < 0) return false;
+      var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+      return re.test(s);
+    }
+    if (!isValidWaitlistEmail(email)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.classList.add('show');
+      return;
+    }
+    var dogName = document.getElementById('wl-dog').value.trim() || null;
+    var referredBy = getReferredBy();
+    var referralCode = genReferralCode();
+
+    submitBtn.disabled = true;
+    var attempt = 0;
+    var lastErr = null;
+    while (attempt < 4) {
+      var ins = await sb.from('waitlist').insert({
+        email: email,
+        dog_name: dogName,
+        referral_code: referralCode,
+        referred_by: referredBy,
+      });
+      if (!ins.error) break;
+      lastErr = ins.error;
+      if (ins.error.code === '23505') {
+        if (String(ins.error.message || '').toLowerCase().indexOf('email') >= 0) {
+          errEl.textContent = "You're already on the list. We'll be in touch at this email.";
+          errEl.classList.add('show');
+          submitBtn.disabled = false;
+          return;
+        }
+        referralCode = genReferralCode();
+        attempt++;
+        continue;
+      }
+      errEl.textContent = ins.error.message || 'Something went wrong. Please try again.';
+      errEl.classList.add('show');
+      submitBtn.disabled = false;
+      return;
+    }
+    if (lastErr && attempt >= 4) {
+      errEl.textContent = lastErr.message || 'Please try again.';
+      errEl.classList.add('show');
+      submitBtn.disabled = false;
+      return;
+    }
+
+    var shareUrl = window.location.origin + window.location.pathname + '?ref=' + encodeURIComponent(referralCode);
+    if (window.location.origin === 'null' || !window.location.origin) {
+      shareUrl = window.location.pathname + '?ref=' + encodeURIComponent(referralCode);
+    }
+
+    form.style.display = 'none';
+    successEl.classList.add('show');
+    refBox.textContent = shareUrl;
+    box.classList.add('success');
+    submitBtn.disabled = false;
+  });
+})();
+  </script>
 </body>
 </html>

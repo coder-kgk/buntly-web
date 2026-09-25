@@ -1,0 +1,6 @@
+# Public tokenized pages contain PII — do not index.
+User-agent: *
+Disallow: /card/
+Disallow: /sitter/
+Disallow: /memorial/
+Disallow: /milestone/
