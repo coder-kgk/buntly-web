@@ -583,7 +583,7 @@
     if (!node) return null;
     try {
       var t = node.textContent.trim();
-      if (!t || t.indexOf('{"supabaseUrl": "https://tgnsomgwgwsjtnozyfxa.supabase.co", "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnbnNvbWd3Z3dzanRub3p5ZnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNjQwMzEsImV4cCI6MjA5Mzk0MDAzMX0.tzcrX4FijPvIZvQnAM1pbXkHgWXjeEx2F0e-hHNDzmk"}') >= 0) return null;
+      if (!t || t.indexOf('__BUNTLY_LANDING_CONFIG_JSON__') >= 0) return null;
       return JSON.parse(t);
     } catch (e) {
       return null;
